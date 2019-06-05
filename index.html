@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	
+	<div class="game">
+		<h1 class="text-center">POINTS</h1>
+		<h1 class="points text-center">0</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog w-75" src="jake.png" alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png" alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+					<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="youwin" style="height: 260px; width: 400px; text-align: center; background-color: green; position: absolute; margin-left: 570px; margin-top: -450px; display: none;">
+		<h1 style="margin-top: 90px; color: white;">You Win!</h1>
+	</div>
+	<div class="youlose" style="height: 260px; width: 400px; text-align: center; background-color: red; position: absolute; margin-left: 570px; margin-top: -450px; display: none;">
+		<h1 style="margin-top: 90px; color: white;">You Lose!</h1>
+	</div>
+	
+	
+
+
+	<script>
+		
+	let score = 0
+	let points = document.querySelector(".points")
+	let jake = document.querySelectorAll(".jakethedog")
+	let iceking = document.querySelectorAll(".iceking")
+	let youwin = document.querySelector(".youwin")
+	let youlose = document.querySelector(".youlose")
+	let func = function(arg){
+		let random = Math.random()*8
+		let round = Math.round(random)
+		arg[round].style.display = "block"
+		let time = function(){
+			jake[round].style.display = "none"
+		}
+		setTimeout(time,800)
+		let timex = function(){
+			iceking[round].style.display = "none"
+		}
+		setTimeout(timex,800)
+	}
+	let jakeinterv = function(){
+		func(jake)
+		/*let random = Math.random()*8
+		let round = Math.round(random)
+		jake[round].style.display = "block"
+		let time = function(){
+			jake[round].style.display = "none"
+		}
+		setTimeout(time,800)*/
+	}
+	setInterval(jakeinterv,1000)
+	for(let index = 0; index<8; index = index + 1){//цикл
+		jake[index].onclick = function(){
+			jake[index].style.display = "none"
+			score = score + 2
+			points.innerHTML = score
+		}
+	}	
+	let icekinginterv = function(){
+		func(iceking)
+		/*let random = Math.random()*8
+		let round = Math.round(random)
+		iceking[round].style.display = "block"
+		let time = function(){
+			iceking[round].style.display = "none"
+		}
+		setTimeout(time,800)*/
+	}
+	setInterval(icekinginterv,2000)
+	for(let index1 = 0; index1<8; index1 = index1 + 1){//цикл
+		iceking[index1].onclick = function(){
+			iceking[index1].style.display = "none"
+			score = score - 10
+			points.innerHTML = score
+		}
+	}
+	let timeout = function(){
+		if (score >= 5 ){
+			youwin.style.display = "block"
+		} 
+		else {
+			youlose.style.display = "block"
+		}
+	}
+	setTimeout(timeout,5000)	
+		
+	</script>
+</body>
+</html>
